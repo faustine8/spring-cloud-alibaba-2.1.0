@@ -83,11 +83,13 @@ public class SentinelWebAutoConfiguration {
 		if (filterConfig.getUrlPatterns() == null
 				|| filterConfig.getUrlPatterns().isEmpty()) {
 			List<String> defaultPatterns = new ArrayList<>();
+			// 设置过滤器的拦截路径是 /*
 			defaultPatterns.add("/*");
 			filterConfig.setUrlPatterns(defaultPatterns);
 		}
 
 		registration.addUrlPatterns(filterConfig.getUrlPatterns().toArray(new String[0]));
+		// 新建过滤器
 		Filter filter = new CommonFilter();
 		registration.setFilter(filter);
 		registration.setOrder(filterConfig.getOrder());
